@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filiere Circolari _- Valorizzazione degli Scarti</title>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-circle"></div>
+    </div>
+
+    <div class="container-fluid">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>relè</h1>
+                <p>modello esplorativo per l'interpretazione di dati qualitativi e quantitativi di start-up e PMI che hanno attivato processi di valorizzazione degli scarti agroalimentari</p>
+            </div>
+        </section>
+
+        <!-- Controls Section -->
+        <section class="controls-section">
+            <div class="container-xl">
+                <div class="row g-3 align-items-end">
+                    <div class="col-md-3">
+                        <label class="form-label filter-label">filiera origine</label>
+                        <select id="sourceFilter" class="form-select custom-select">
+                            <option value="">tutte</option>
+                            <option value="ortofrutticola">ortofrutticola</option>
+                            <option value="cerealicola">cerealicola</option>
+                            <option value="lattiero-casearia">lattiero casearia</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label filter-label">filiera destinazione</label>
+                        <select id="destinationFilter" class="form-select custom-select">
+                            <option value="">tutte</option>
+                            <option value="tessile">tessile</option>
+                            <option value="edile">edile</option>
+                            <option value="arredo">arredo</option>
+                            <option value="packaging">packaging</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <!-- <label class="form-label filter-label">tipo attore</label>
+                        <select id="actorFilter" class="form-select custom-select">
+                            <option value="">tutti</option>
+                            <option value="azienda">azienda</option>
+                            <option value="università">università</option>
+                        </select> -->
+                    </div>
+                    <div class="col-md-3">
+                        <div class="d-flex gap-2">
+                            <button id="resetBtn" class="btn custom-btn flex-fill">reset sistema</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Legend Section -->
+        <section class="legend-section">
+            <div class="container-xl">
+                <div class="d-flex justify-content-center flex-wrap gap-4">
+                    <div class="legend-item">
+                        <div class="legend-box legend-info"><p style="color: white;"><br>%</p></div>
+                        <span>percentuale valorizzazione</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-box legend-info"><p style="color: white;"><br>i</p></div>
+                        <span>informazioni dettagliate</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10 Column Grid -->
+        <div class="container-fluid px-0">
+            <div class="supply-chain-container-12">
+                <div class="supply-chain-grid-10" id="supplyChainGrid">
+                    
+                    <!-- COLONNA 1: FILIERA -->
+                    <div class="column-12">
+                        <div class="column-header-12">filiera</div>
+                        <div class="column-content-12">
+                            <div class="card-item-12" data-type="filiera" data-id="filiera-1" data-category="ortofrutticola" data-connections="tip-1" data-aziende="id-1">
+                                <div class="item-title-12">ortofrutticola</div>
+                            </div>
+                            <div class="card-item-12" data-type="filiera" data-id="filiera-2" data-category="cerealicola" data-connections="tip-2" data-aziende="id-2">
+                                <div class="item-title-12">cerealicola</div>
+                            </div>
+                            <div class="card-item-12" data-type="filiera" data-id="filiera-3" data-category="lattiero-casearia" data-connections="tip-3,tip-3b" data-aziende="id-3,id-4">
+                                <div class="item-title-12">lattiero casearia</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLONNA 2: TIPOLOGICA -->
+                    <div class="column-12">
+                        <div class="column-header-12">tipologica</div>
+                        <div class="column-content-12">
+                            <div class="card-item-12" data-type="tipologica" data-id="tip-1" data-connections="filiera-1,az-1,az-1b,det-1,id-1" data-aziende="id-1">
+                                <div class="item-title-12">succo di arance</div>
+                                <div class="item-subtitle-12">o r b</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologica" data-id="tip-2" data-connections="filiera-2,az-2,det-2,id-2" data-aziende="id-2">
+                                <div class="item-title-12">riso</div>
+                                <div class="item-subtitle-12">r b</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologica" data-id="tip-3" data-connections="filiera-3,az-3,det-3,id-3" data-aziende="id-3">
+                                <div class="item-title-12">latte formaggi</div>
+                                <div class="item-subtitle-12">b m</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologica" data-id="tip-3b" data-connections="filiera-3,az-3,det-3b,id-4" data-aziende="id-4">
+                                <div class="item-title-12">latte di scarto</div>
+                                <div class="item-subtitle-12">b m</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLONNA 3: AZIENDA DI DERIVAZIONE -->
+                    <div class="column-12">
+                        <div class="column-header-12">azienda derivazione scarto</div>
+                        <div class="column-content-12">
+                            <div class="card-item-12" data-type="azienda" data-id="az-1" data-connections="filiera-1,tip-1,det-1,id-1" data-aziende="id-1">
+                                <div class="item-title-12">azienda trasformazione primaria</div>
+                            </div>
+                            <div class="card-item-12" data-type="azienda" data-id="az-1b" data-connections="filiera-1,tip-1,det-1,id-1" data-aziende="id-1">
+                                <div class="item-title-12">azienda trasformazione secondaria</div>
+                            </div>
+                            <div class="card-item-12" data-type="azienda" data-id="az-2" data-connections="filiera-2,tip-2,det-2,id-2" data-aziende="id-2">
+                                <div class="item-title-12">aziende agricole</div>
+                            </div>
+                            <div class="card-item-12" data-type="azienda" data-id="az-3" data-connections="filiera-3,tip-3,tip-3b,det-3,det-3b,id-3,id-4" data-aziende="id-3,id-4">
+                                <div class="item-title-12">caseifici</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLONNA 4: DETTAGLIO DI SCARTO -->
+                    <div class="column-12">
+                        <div class="column-header-12">tipologia scarto</div>
+                        <div class="column-content-12">
+                            <div class="card-item-12" data-type="dettaglio" data-id="det-1" data-connections="filiera-1,tip-1,az-1,az-1b,id-1,fasi-1,fasi-1b,fasi-1c,fasi-1d,fasi-1e,fasi-1f,fasi-1g,fasi-1h,output-1,output-1b" data-aziende="id-1">
+                                <div class="percentage-12" data-popup="sost-1">90%</div>
+                                <div class="item-title-12">buccia e pastazzo</div>
+                            </div>
+                            <div class="card-item-12" data-type="dettaglio" data-id="det-2" data-connections="filiera-2,tip-2,az-2,id-2,fasi-2,fasi-2b,fasi-2c,fasi-2d,fasi-2e,output-2,output-2b,output-2c" data-aziende="id-2">
+                                <div class="percentage-12" data-popup="sost-2">98%</div>
+                                <div class="item-title-12">lolla</div>
+                            </div>
+                            <div class="card-item-12" data-type="dettaglio" data-id="det-3" data-connections="filiera-3,tip-3,az-3,id-3,fasi-3,fasi-3b,fasi-3c,fasi-3d,fasi-3e,fasi-3f,fasi-3g,fasi-3h,output-3,output-3b,output-3c" data-aziende="id-3">
+                                <div class="percentage-12" data-popup="sost-3">90%</div>
+                                <div class="item-title-12">reflui caseari</div>
+                            </div>
+                            <div class="card-item-12" data-type="dettaglio" data-id="det-3b" data-connections="filiera-3,tip-3b,az-3,id-4,fasi-4,fasi-4b,fasi-4c,fasi-4d,output-4" data-aziende="id-4">
+                                <div class="percentage-12" data-popup="sost-4">95%</div>
+                                <div class="item-title-12">latte di scarto</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLONNA 5: IDENTITÀ AZIENDA -->
+                    <div class="column-12">
+                        <div class="column-header-12">identità azienda</div>
+                        <div class="column-content-12">
+                            <div class="card-item-12" data-type="identita" data-id="id-1" data-aziende="id-1" data-connections="filiera-1,tip-1,az-1,az-1b,det-1,fasi-1,fasi-1b,fasi-1c,fasi-1d,fasi-1e,fasi-1f,fasi-1g,fasi-1h,output-1,output-1b,dest-1,fil-dest-1,fil-dest-1b,tip-add-1,tip-add-1b,tip-add-1c">
+                                <div class="info-icon-12" data-popup="info-id-1">i</div>
+                                <div class="item-title-12">orange fiber</div>
+                            </div>
+                            <div class="card-item-12" data-type="identita" data-id="id-2" data-aziende="id-2" data-connections="filiera-2,tip-2,az-2,det-2,fasi-2,fasi-2b,fasi-2c,fasi-2d,fasi-2e,output-2,output-2b,output-2c,dest-2,dest-2b,fil-dest-2,fil-dest-2b,tip-add-2,tip-add-2b,tip-add-2c">
+                                <div class="info-icon-12" data-popup="info-id-2">i</div>
+                                <div class="item-title-12">ricehouse</div>
+                            </div>
+                            <div class="card-item-12" data-type="identita" data-id="id-3" data-aziende="id-3" data-connections="filiera-3,tip-3,az-3,det-3,fasi-3,fasi-3b,fasi-3c,fasi-3d,fasi-3e,fasi-3f,fasi-3g,fasi-3h,output-3,output-3b,output-3c,dest-3,fil-dest-3,fil-dest-3b,tip-add-3,tip-add-3b">
+                                <div class="info-icon-12" data-popup="info-id-3">i</div>
+                                <div class="item-title-12">biocosì</div>
+                            </div>
+                            <div class="card-item-12" data-type="identita" data-id="id-4" data-aziende="id-4" data-connections="filiera-3,tip-3b,az-3,det-3b,fasi-4,fasi-4b,fasi-4c,fasi-4d,output-4,dest-4,dest-4b,dest-4c,fil-dest-4,fil-dest-4b,tip-add-4,tip-add-4b,tip-add-4c,tip-add-4d">
+                                <div class="info-icon-12" data-popup="info-id-4">i</div>
+                                <div class="item-title-12">milkbrick</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLONNA 6: FASI DI TRASFORMAZIONE -->
+                    <div class="column-12">
+                        <div class="column-header-12">fasi di trasformazione</div>
+                        <div class="column-content-12">
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-1" data-connections="det-1,id-1,output-1,output-1b" data-aziende="id-1">
+                                <div class="item-title-12">essiccazione</div>
+                            </div>
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-1b" data-connections="det-1,id-1,output-1,output-1b" data-aziende="id-1">
+                                <div class="item-title-12">macinazione</div>
+                            </div>
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-1c" data-connections="det-1,id-1,output-1,output-1b" data-aziende="id-1">
+                                <div class="item-title-12">omogenizzazione</div>
+                            </div>
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-1d" data-connections="det-1,id-1,output-1,output-1b" data-aziende="id-1">
+                                <div class="item-title-12">reidratazione</div>
+                            </div>
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-1e" data-connections="det-1,id-1,output-1,output-1b" data-aziende="id-1">
+                                <div class="item-title-12">estrazione</div>
+                            </div>
+                           
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-1g" data-connections="det-1,id-1,output-1,output-1b" data-aziende="id-1">
+                                <div class="item-title-12">filatura</div>
+                            </div>
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-1h" data-connections="det-1,id-1,output-1,output-1b" data-aziende="id-1">
+                                <div class="item-title-12">tessitura</div>
+                            </div>
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-2" data-connections="det-2,id-2,output-2,output-2b,output-2c" data-aziende="id-2">
+                                <div class="item-title-12">essicazione</div>
+                            </div>
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-2b" data-connections="det-2,id-2,output-2,output-2b,output-2c" data-aziende="id-2">
+                                <div class="item-title-12">compattamento</div>
+                            </div>
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-2c" data-connections="det-2,id-2,output-2,output-2b,output-2c" data-aziende="id-2">
+                                <div class="item-title-12">stabilizzazione biochimica</div>
+                            </div>
+                            
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-3b" data-connections="det-3,id-3,output-3,output-3b,output-3c" data-aziende="id-3">
+                                <div class="item-title-12">frazionamento</div>
+                            </div>
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-3c" data-connections="det-3,id-3,output-3,output-3b,output-3c" data-aziende="id-3">
+                                <div class="item-title-12">fermentazione</div>
+                            </div>
+                            
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-3e" data-connections="det-3,id-3,output-3,output-3b,output-3c" data-aziende="id-3">
+                                <div class="item-title-12">miscelazione</div>
+                            </div>
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-3f" data-connections="det-3,id-3,output-3,output-3b,output-3c" data-aziende="id-3">
+                                <div class="item-title-12">estrusione</div>
+                            </div>
+                            
+                            <div class="card-item-12" data-type="fasi" data-id="fasi-4d" data-connections="det-3b,id-4,output-4" data-aziende="id-4">
+                                <div class="item-title-12">pressatura</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLONNA 7: OUTPUT -->
+                    <div class="column-12">
+                        <div class="column-header-12">output</div>
+                        <div class="column-content-12">
+                            <div class="card-item-12" data-type="output" data-id="output-1" data-aziende="id-1" data-connections="filiera-1,tip-1,az-1,az-1b,det-1,id-1,fasi-1,fasi-1b,fasi-1c,fasi-1d,fasi-1e,fasi-1f,fasi-1g,fasi-1h,dest-1,fil-dest-1,fil-dest-1b,tip-add-1,tip-add-1b,tip-add-1c">
+                                <div class="info-icon-12" data-popup="prest-1">i</div>
+                                <div class="item-title-12">filato</div>
+                            </div>
+                            <div class="card-item-12" data-type="output" data-id="output-1b" data-aziende="id-1" data-connections="filiera-1,tip-1,az-1,az-1b,det-1,id-1,fasi-1,fasi-1b,fasi-1c,fasi-1d,fasi-1e,fasi-1f,fasi-1g,fasi-1h,dest-1,fil-dest-1,fil-dest-1b,tip-add-1,tip-add-1b,tip-add-1c">
+                                <div class="info-icon-12" data-popup="prest-1">i</div>
+                                <div class="item-title-12">tessuto</div>
+                            </div>
+                            <div class="card-item-12" data-type="output" data-id="output-2" data-aziende="id-2" data-connections="filiera-2,tip-2,az-2,det-2,id-2,fasi-2,fasi-2b,fasi-2c,fasi-2d,fasi-2e,dest-2,dest-2b,fil-dest-2,fil-dest-2b,tip-add-2,tip-add-2b,tip-add-2c">
+                                <div class="info-icon-12" data-popup="prest-2">i</div>
+                                <div class="item-title-12">materiale di isolamento termico e acustico</div>
+                            </div>
+                            <div class="card-item-12" data-type="output" data-id="output-2b" data-aziende="id-2" data-connections="filiera-2,tip-2,az-2,det-2,id-2,fasi-2,fasi-2b,fasi-2c,fasi-2d,fasi-2e,dest-2,dest-2b,fil-dest-2,fil-dest-2b,tip-add-2,tip-add-2b,tip-add-2c">
+                                <div class="info-icon-12" data-popup="prest-2">i</div>
+                                <div class="item-title-12">pannello di isolamento termico e acustico</div>
+                            </div>
+                            <div class="card-item-12" data-type="output" data-id="output-2c" data-aziende="id-2" data-connections="filiera-2,tip-2,az-2,det-2,id-2,fasi-2,fasi-2b,fasi-2c,fasi-2d,fasi-2e,dest-2,dest-2b,fil-dest-2,fil-dest-2b,tip-add-2,tip-add-2b,tip-add-2c">
+                                <div class="info-icon-12" data-popup="prest-2">i</div>
+                                <div class="item-title-12">mattone</div>
+                            </div>
+                            <div class="card-item-12" data-type="output" data-id="output-3" data-aziende="id-3" data-connections="filiera-3,tip-3,az-3,det-3,id-3,fasi-3,fasi-3b,fasi-3c,fasi-3d,fasi-3e,fasi-3f,fasi-3g,fasi-3h,dest-3,fil-dest-3,fil-dest-3b,tip-add-3,tip-add-3b">
+                                <div class="info-icon-12" data-popup="prest-3">i</div>
+                                <div class="item-title-12">packaging</div>
+                            </div>
+                            <div class="card-item-12" data-type="output" data-id="output-3b" data-aziende="id-3" data-connections="filiera-3,tip-3,az-3,det-3,id-3,fasi-3,fasi-3b,fasi-3c,fasi-3d,fasi-3e,fasi-3f,fasi-3g,fasi-3h,dest-3,fil-dest-3,fil-dest-3b,tip-add-3,tip-add-3b">
+                                <div class="info-icon-12" data-popup="prest-3">i</div>
+                                <div class="item-title-12">pellicola trasparente</div>
+                            </div>
+                            <div class="card-item-12" data-type="output" data-id="output-3c" data-aziende="id-3" data-connections="filiera-3,tip-3,az-3,det-3,id-3,fasi-3,fasi-3b,fasi-3c,fasi-3d,fasi-3e,fasi-3f,fasi-3g,fasi-3h,dest-3,fil-dest-3,fil-dest-3b,tip-add-3,tip-add-3b">
+                                <div class="info-icon-12" data-popup="prest-3">i</div>
+                                <div class="item-title-12">pack formaggi</div>
+                            </div>
+                            <div class="card-item-12" data-type="output" data-id="output-4" data-aziende="id-4" data-connections="filiera-3,tip-3b,az-3,det-3b,id-4,fasi-4,fasi-4b,fasi-4c,fasi-4d,dest-4,dest-4b,dest-4c,fil-dest-4,fil-dest-4b,tip-add-4,tip-add-4b,tip-add-4c,tip-add-4d">
+                                <div class="info-icon-12" data-popup="prest-4">i</div>
+                                <div class="item-title-12">mattone</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLONNA 8: DESTINAZIONI D'USO -->
+                    <div class="column-12">
+                        <div class="column-header-12">destinazioni d uso</div>
+                        <div class="column-content-12">
+                            <div class="card-item-12" data-type="destinazioni" data-id="dest-1" data-connections="output-1,output-1b" data-aziende="id-1">
+                                <div class="item-title-12">ricerca di inedite destinazioni d uso</div>
+                            </div>
+                            <div class="card-item-12" data-type="destinazioni" data-id="dest-2" data-connections="output-2,output-2b,output-2c" data-aziende="id-2">
+                                <div class="item-title-12">aziende edili</div>
+                            </div>
+                            <div class="card-item-12" data-type="destinazioni" data-id="dest-2b" data-connections="output-2,output-2b,output-2c" data-aziende="id-2">
+                                <div class="item-title-12">università</div>
+                            </div>
+                            <div class="card-item-12" data-type="destinazioni" data-id="dest-3" data-connections="output-3,output-3b,output-3c" data-aziende="id-3">
+                                <div class="item-title-12">industria alimentare lattiero casearia</div>
+                            </div>
+                            <div class="card-item-12" data-type="destinazioni" data-id="dest-4" data-connections="output-4" data-aziende="id-4">
+                                <div class="item-title-12">murature perimetrali tamponamenti pareti interne esterne divisori tagliafuoco</div>
+                            </div>
+                            <div class="card-item-12" data-type="destinazioni" data-id="dest-4b" data-connections="output-4" data-aziende="id-4">
+                                <div class="item-title-12">aziende edili</div>
+                            </div>
+                            <div class="card-item-12" data-type="destinazioni" data-id="dest-4c" data-connections="output-4" data-aziende="id-4">
+                                <div class="item-title-12">calcestruzzi spa heidelberg materials</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLONNA 9: TIPOLOGIA DI ADDITIVAZIONE -->
+                    <div class="column-12">
+                        <div class="column-header-12">tipologia di additivazione</div>
+                        <div class="column-content-12">
+                            <div class="card-item-12" data-type="tipologia-add" data-id="tip-add-1" data-connections="output-1,output-1b,dest-1,fil-dest-1,fil-dest-1b" data-aziende="id-1">
+                                <div class="item-title-12">politecnico di milano</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologia-add" data-id="tip-add-1b" data-connections="output-1,output-1b,dest-1,fil-dest-1,fil-dest-1b" data-aziende="id-1">
+                                <div class="item-title-12">aziende filato estere</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologia-add" data-id="tip-add-1c" data-connections="output-1,output-1b,dest-1,fil-dest-1,fil-dest-1b" data-aziende="id-1">
+                                <div class="item-title-12">aziende tessili como</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologia-add" data-id="tip-add-2" data-connections="output-2,output-2b,output-2c,dest-2,dest-2b,fil-dest-2,fil-dest-2b" data-aziende="id-2">
+                                <div class="item-title-12">azienda trasformazione primaria</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologia-add" data-id="tip-add-2b" data-connections="output-2,output-2b,output-2c,dest-2,dest-2b,fil-dest-2,fil-dest-2b" data-aziende="id-2">
+                                <div class="item-title-12">azienda edile</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologia-add" data-id="tip-add-2c" data-connections="output-2,output-2b,output-2c,dest-2,dest-2b,fil-dest-2,fil-dest-2b" data-aziende="id-2">
+                                <div class="item-title-12">università</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologia-add" data-id="tip-add-3" data-connections="output-3,output-3b,output-3c,dest-3,fil-dest-3,fil-dest-3b" data-aziende="id-3">
+                                <div class="item-title-12">test prestazionali matrici alternative</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologia-add" data-id="tip-add-3b" data-connections="output-3,output-3b,output-3c,dest-3,fil-dest-3,fil-dest-3b" data-aziende="id-3">
+                                <div class="item-title-12">università</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologia-add" data-id="tip-add-4" data-connections="output-4,dest-4,dest-4b,dest-4c,fil-dest-4,fil-dest-4b" data-aziende="id-4">
+                                <div class="item-title-12">argiolas formaggi</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologia-add" data-id="tip-add-4b" data-connections="output-4,dest-4,dest-4b,dest-4c,fil-dest-4,fil-dest-4b" data-aziende="id-4">
+                                <div class="item-title-12">calcestruzzi spa heidelberg materials</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologia-add" data-id="tip-add-4c" data-connections="output-4,dest-4,dest-4b,dest-4c,fil-dest-4,fil-dest-4b" data-aziende="id-4">
+                                <div class="item-title-12">italcementi heidelberg materials</div>
+                            </div>
+                            <div class="card-item-12" data-type="tipologia-add" data-id="tip-add-4d" data-connections="output-4,dest-4,dest-4b,dest-4c,fil-dest-4,fil-dest-4b" data-aziende="id-4">
+                                <div class="item-title-12">innovation campus milano</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- COLONNA 10: FILIERA DI DESTINAZIONE -->
+                    <div class="column-12">
+                        <div class="column-header-12">filiera di destinazione</div>
+                        <div class="column-content-12">
+                            <div class="card-item-12" data-type="filiera-dest" data-id="fil-dest-1" data-connections="output-1,output-1b,dest-1,tip-add-1,tip-add-1b,tip-add-1c" data-aziende="id-1">
+                                <div class="item-title-12">filiera tessile</div>
+                            </div>
+                            <div class="card-item-12" data-type="filiera-dest" data-id="fil-dest-1b" data-connections="output-1,output-1b,dest-1,tip-add-1,tip-add-1b,tip-add-1c" data-aziende="id-1">
+                                <div class="item-title-12">filiera dell arredo</div>
+                            </div>
+                            <div class="card-item-12" data-type="filiera-dest" data-id="fil-dest-2" data-connections="output-2,output-2b,output-2c,dest-2,dest-2b,tip-add-2,tip-add-2b,tip-add-2c" data-aziende="id-2">
+                                <div class="item-title-12">filiera edile</div>
+                            </div>
+                            <div class="card-item-12" data-type="filiera-dest" data-id="fil-dest-2b" data-connections="output-2,output-2b,output-2c,dest-2,dest-2b,tip-add-2,tip-add-2b,tip-add-2c" data-aziende="id-2">
+                                <div class="item-title-12">filiera dell arredo</div>
+                            </div>
+                            <div class="card-item-12" data-type="filiera-dest" data-id="fil-dest-3" data-connections="output-3,output-3b,output-3c,dest-3,tip-add-3,tip-add-3b" data-aziende="id-3">
+                                <div class="item-title-12">filiera packaging</div>
+                            </div>
+                            <div class="card-item-12" data-type="filiera-dest" data-id="fil-dest-3b" data-connections="output-3,output-3b,output-3c,dest-3,tip-add-3,tip-add-3b" data-aziende="id-3">
+                                <div class="item-title-12">filiera packaging agroalimentare</div>
+                            </div>
+                            <div class="card-item-12" data-type="filiera-dest" data-id="fil-dest-4" data-connections="output-4,dest-4,dest-4b,dest-4c,tip-add-4,tip-add-4b,tip-add-4c,tip-add-4d" data-aziende="id-4">
+                                <div class="item-title-12">filiera edile</div>
+                            </div>
+                            <div class="card-item-12" data-type="filiera-dest" data-id="fil-dest-4b" data-connections="output-4,dest-4,dest-4b,dest-4c,tip-add-4,tip-add-4b,tip-add-4c,tip-add-4d" data-aziende="id-4">
+                                <div class="item-title-12">filiera delle costruzioni</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+     <!-- DRIVER DI CAMBIAMENTO -->
+<div class="container-fluid px-0" style="margin-top: 60px;">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center mb-4">driver di cambiamento</h2>
+        </div>
+    </div>
+    <div class="supply-chain-container-12">
+        <div class="supply-chain-grid-4" id="driverGrid">
+            
+            <!-- COLONNA 1: SCALABILITÀ PROCESSO -->
+            <div class="column-12">
+                <div class="column-header-12">scalabilità processo</div>
+                <div class="column-content-12">
+                    <!-- ORANGE FIBER -->
+                    <div class="card-item-12" data-type="driver" data-id="scal-of-1" data-aziende="id-1">
+                        <div class="item-title-12">▲ difformità di produzione</div>
+                        <div class="item-subtitle-12">O R</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="scal-of-2" data-aziende="id-1">
+                        <div class="item-title-12">▲ reperimento scarto</div>
+                        <div class="item-subtitle-12">O B</div>
+                    </div>
+                    
+                    <!-- RICEHOUSE -->
+                    
+                    <div class="card-item-12" data-type="driver" data-id="scal-rh-2" data-aziende="id-2">
+                        <div class="item-title-12">▲ mancanza certificazioni</div>
+                        <div class="item-subtitle-12">O R</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="scal-rh-3" data-aziende="id-2">
+                        <div class="item-title-12">▲ bias interpretativo</div>
+                        <div class="item-subtitle-12">ricehouse</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="scal-rh-4" data-aziende="id-2">
+                        <div class="item-title-12">■ impatto calcolato su alimento</div>
+                        <div class="item-subtitle-12">ricehouse</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="scal-rh-5" data-aziende="id-2">
+                        <div class="item-title-12">■ logistica locale</div>
+                        <div class="item-subtitle-12"> R M</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="scal-rh-6" data-aziende="id-2">
+                        <div class="item-title-12">■ simbiosi industriale</div>
+                        <div class="item-subtitle-12">ricehouse</div>
+                    </div>
+                    
+                    <!-- BIOCOSÌ -->
+                    
+                    <div class="card-item-12" data-type="driver" data-id="scal-bc-2" data-aziende="id-3">
+                        <div class="item-title-12">▲ costi elevati</div>
+                        <div class="item-subtitle-12">biocosì</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="scal-bc-3" data-aziende="id-3">
+                        <div class="item-title-12">▲ logistica estesa</div>
+                        <div class="item-subtitle-12">biocosì</div>
+                    </div>
+                   
+                    <div class="card-item-12" data-type="driver" data-id="scal-mb-2" data-aziende="id-4">
+                        <div class="item-title-12">■ trasformazione locale/interna</div>
+                        <div class="item-subtitle-12">M B</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="scal-mb-3" data-aziende="id-4">
+                        <div class="item-title-12">▲ competitività mercato</div>
+                        <div class="item-subtitle-12">milkbrick</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="scal-mb-4" data-aziende="id-4">
+                        <div class="item-title-12">▲ diversificazione scala attori</div>
+                        <div class="item-subtitle-12">milkbrick</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLONNA 2: FINANZIAMENTI -->
+            <div class="column-12">
+                <div class="column-header-12">finanziamenti</div>
+                <div class="column-content-12">
+                    <!-- ORANGE FIBER -->
+                    <div class="card-item-12" data-type="driver" data-id="fin-of-1" data-aziende="id-1">
+                        <div class="item-title-12">fesr provincia trento</div>
+                        <div class="item-subtitle-12">tipo</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="fin-of-2" data-aziende="id-1">
+                        <div class="item-title-12">fondo europeo sviluppo regionale</div>
+                        <div class="item-subtitle-12">tipo</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="fin-of-3" data-aziende="id-1">
+                        <div class="item-title-12">smart start invitalia</div>
+                        <div class="item-subtitle-12">tipo</div>
+                    </div>
+                    
+                    <!-- RICEHOUSE -->
+                    <div class="card-item-12" data-type="driver" data-id="fin-rh-1" data-aziende="id-2">
+                        <div class="item-title-12">b heroes</div>
+                        <div class="item-subtitle-12">tipo</div>
+                    </div>
+                    
+                    <!-- BIOCOSÌ -->
+                    <div class="card-item-12" data-type="driver" data-id="fin-bc-1" data-aziende="id-3">
+                        <div class="item-title-12">fesr regione puglia</div>
+                        <div class="item-subtitle-12">tipo</div>
+                    </div>
+                    
+                    <!-- MILKBRICK -->
+                    <div class="card-item-12" data-type="driver" data-id="fin-mb-1" data-aziende="id-4">
+                        <div class="item-title-12">acceleratore clhub</div>
+                        <div class="item-subtitle-12">tipo</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLONNA 3: ATTORI -->
+            <div class="column-12">
+                <div class="column-header-12">attori</div>
+                <div class="column-content-12">
+                    <!-- ORANGE FIBER -->
+                    <div class="card-item-12" data-type="driver" data-id="att-of-1" data-aziende="id-1">
+                        <div class="item-title-12">politecnico di milano</div>
+                        <div class="item-subtitle-12">dip chimica materiali ing chimica</div>
+                    </div>
+                    
+                    <div class="card-item-12" data-type="driver" data-id="att-of-4" data-aziende="id-1">
+                        <div class="item-title-12">salvatore ferragamo</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-of-5" data-aziende="id-1">
+                        <div class="item-title-12">H&M conscious exclusive</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-of-6" data-aziende="id-1">
+                        <div class="item-title-12">pitti uomo</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-of-7" data-aziende="id-1">
+                        <div class="item-title-12">marinella</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-of-8" data-aziende="id-1">
+                        <div class="item-title-12">tecla 3d</div>
+                    </div>
+                    
+                    <!-- RICEHOUSE -->
+                    <div class="card-item-12" data-type="driver" data-id="att-rh-1" data-aziende="id-2">
+                        <div class="item-title-12">politecnico di torino</div>
+                        <div class="item-subtitle-12">dip architettura e design</div>
+                    </div>
+                
+                    
+                    <!-- BIOCOSÌ -->
+                    <div class="card-item-12" data-type="driver" data-id="att-bc-1" data-aziende="id-3">
+                        <div class="item-title-12">università degli studi di bari</div>
+                        <div class="item-subtitle-12">dip scienze suolo pianta alimenti</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-bc-2" data-aziende="id-3">
+                        <div class="item-title-12">enea</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-bc-3" data-aziende="id-3">
+                        <div class="item-title-12">rete laboratori pubblici microtronic</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-bc-4" data-aziende="id-3">
+                        <div class="item-title-12">cnr istituto fotonica nanotecnologie</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-bc-5" data-aziende="id-3">
+                        <div class="item-title-12">eggplant</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-bc-6" data-aziende="id-3">
+                        <div class="item-title-12">compost natura srl</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-bc-7" data-aziende="id-3">
+                        <div class="item-title-12">rl engineering srl</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-bc-8" data-aziende="id-3">
+                        <div class="item-title-12">csqa certificazioni</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-bc-9" data-aziende="id-3">
+                        <div class="item-title-12">caseificio colli pugliesi</div>
+                    </div>
+                    
+                    <!-- MILKBRICK -->
+                    <div class="card-item-12" data-type="driver" data-id="att-mb-1" data-aziende="id-4">
+                        <div class="item-title-12">innovation campus milano</div>
+                        <div class="item-subtitle-12">heidelberg materials italcementi</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-mb-2" data-aziende="id-4">
+                        <div class="item-title-12">argiolas formaggi</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-mb-3" data-aziende="id-4">
+                        <div class="item-title-12">calcestruzzi spa</div>
+                        <div class="item-subtitle-12">heidelberg materials</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-mb-4" data-aziende="id-4">
+                        <div class="item-title-12">italcementi</div>
+                        <div class="item-subtitle-12">heidelberg materials</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-mb-5" data-aziende="id-4">
+                        <div class="item-title-12">cermal</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="att-mb-6" data-aziende="id-4">
+                        <div class="item-title-12">frem group</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLONNA 4: DIRETTIVE GEOPOLITICHE -->
+            <div class="column-12">
+                <div class="column-header-12">direttive geopolitiche</div>
+                <div class="column-content-12">
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 1</div>
+                        <div class="item-subtitle-12"></div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 2</div>
+                        <div class="item-subtitle-12"></div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 3</div>
+                        <div class="item-subtitle-12"></div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 4</div>
+                        <div class="item-subtitle-12"></div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 5</div>
+                        <div class="item-subtitle-12"></div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 6</div>
+                        <div class="item-subtitle-12">biocosì, milkbrick</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 7</div>
+                        <div class="item-subtitle-12"></div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 8</div>
+                        <div class="item-subtitle-12"></div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 9</div>
+                        <div class="item-subtitle-12">orange fiber, biocosì, milkbrick, ricehouse</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 10</div>
+                        <div class="item-subtitle-12"></div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 11</div>
+                       <div class="item-subtitle-12">milkbrick, ricehouse</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 12</div>
+                        <div class="item-subtitle-12">orange fiber, biocosì, milkbrick, ricehouse</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 13</div>
+                       <div class="item-subtitle-12">orange fiber, biocosì, milkbrick, ricehouse</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 14</div>
+                        <div class="item-subtitle-12"></div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 15</div>
+                        <div class="item-subtitle-12">ricehouse</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 16</div>
+                        <div class="item-subtitle-12"></div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-of-1" data-aziende="id-1">
+                        <div class="item-title-12">sdg 17</div>
+                        <div class="item-subtitle-12">orange fiber</div>
+                    </div>
+                    
+                    <div class="card-item-12" data-type="driver" data-id="geo-1" data-aziende="id-1,id-2,id-3,id-4">
+                        <div class="item-title-12">agenda 2030 sdgs</div>
+                        <div class="item-subtitle-12">tutte le aziende</div>
+                    </div>
+
+                    <div class="card-item-12" data-type="driver" data-id="geo-2" data-aziende="id-1,id-2,id-3,id-4">
+                        <div class="item-title-12">green deal europeo</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-3" data-aziende="id-1,id-2,id-3,id-4">
+                        <div class="item-title-12">circular economy action plan</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-4" data-aziende="id-1">
+                        <div class="item-title-12">bioeconomy strategy</div>
+                        <div class="item-subtitle-12">orange fiber</div>
+                    </div>
+                    <div class="card-item-12" data-type="driver" data-id="geo-5" data-aziende="id-1">
+                        <div class="item-title-12">oecd accelerating climate action</div>
+                        <div class="item-subtitle-12">orange fiber</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FOCUS DELLA RICERCA -->
+<div class="container-fluid px-0" style="margin-top: 60px;">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="text-center mb-4">focus della ricerca</h2>
+        </div>
+    </div>
+    <div class="supply-chain-container-12">
+        <div class="supply-chain-grid-3" id="focusGrid">
+            
+            <!-- COLONNA 1: TIPOLOGIA DI FILIERA -->
+            <div class="column-12">
+                <div class="column-header-12">tipologia di filiera</div>
+                <div class="column-content-12">
+                    <div class="card-item-12" data-type="focus" data-id="tipo-1" data-aziende="id-1,id-2,id-3,id-4">
+                        <div class="item-title-12">filiera agroalimentare</div>
+                        <div class="item-subtitle-12">o r b m</div>
+                    </div>
+                    <div class="card-item-12" data-type="focus" data-id="tipo-2" data-aziende="id-1,id-2,id-3,id-4">
+                        <div class="item-title-12">filiera manifatturiera</div>
+                        <div class="item-subtitle-12">o r b m</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLONNA 2: TIPOLOGIA DI VALORIZZAZIONE -->
+            <div class="column-12">
+                <div class="column-header-12">tipologia di valorizzazione</div>
+                <div class="column-content-12">
+                    <!-- DI FILIERA -->
+                    <div class="card-item-12" data-type="focus" data-id="val-fil-1" data-aziende="id-1,id-2,id-3,id-4">
+                        <div class="item-title-12">di filiera economica</div>
+                        <div class="item-subtitle-12">o r b m</div>
+                    </div>
+                    <div class="card-item-12" data-type="focus" data-id="val-fil-2" data-aziende="id-1,id-2,id-3,id-4">
+                        <div class="item-title-12">di filiera ecologica</div>
+                        <div class="item-subtitle-12">o r b m</div>
+                    </div>
+                    <div class="card-item-12" data-type="focus" data-id="val-fil-3" data-aziende="id-1,id-2,id-4">
+                        <div class="item-title-12">di filiera valoriale</div>
+                        <div class="item-subtitle-12">o r m</div>
+                    </div>
+                    
+                    <!-- DELLO SCARTO -->
+                    <div class="card-item-12" data-type="focus" data-id="val-scar-1" data-aziende="id-3,id-4">
+                        <div class="item-title-12">dello scarto funzionale</div>
+                        <div class="item-subtitle-12">b m</div>
+                    </div>
+                    <div class="card-item-12" data-type="focus" data-id="val-scar-2" data-aziende="id-3,id-4">
+                        <div class="item-title-12">dello scarto economica</div>
+                        <div class="item-subtitle-12">b m</div>
+                    </div>
+                    <div class="card-item-12" data-type="focus" data-id="val-scar-3" data-aziende="id-3,id-4">
+                        <div class="item-title-12">dello scarto ecologica</div>
+                        <div class="item-subtitle-12">b m</div>
+                    </div>
+                    
+                    <!-- APPROCCI -->
+                    <div class="card-item-12" data-type="focus" data-id="val-app-1" data-aziende="id-1,id-2,id-4">
+                        <div class="item-title-12">approccio circolare materiale prodotto</div>
+                        <div class="item-subtitle-12">o r m</div>
+                    </div>
+                    <div class="card-item-12" data-type="focus" data-id="val-app-2" data-aziende="id-3,id-4">
+                        <div class="item-title-12">approccio sperimentale materiale</div>
+                        <div class="item-subtitle-12">b m</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLONNA 3: LIVELLO DI SISTEMICITÀ -->
+            <div class="column-12">
+                <div class="column-header-12">livello di sistemicità</div>
+                <div class="column-content-12">
+                    <div class="card-item-12" data-type="focus" data-id="sist-1" data-aziende="id-2,id-4">
+                        <div class="item-title-12">simbiosi industriale</div>
+                        <div class="item-subtitle-12">r m</div>
+                    </div>
+                    <div class="card-item-12" data-type="focus" data-id="sist-2" data-aziende="id-1,id-2,id-4">
+                        <div class="item-title-12">economia circolare globale</div>
+                        <div class="item-subtitle-12">o r m</div>
+                    </div>
+                    <div class="card-item-12" data-type="focus" data-id="sist-3" data-aziende="id-1,id-2,id-4">
+                        <div class="item-title-12">filiera aperta</div>
+                        <div class="item-subtitle-12">o r m</div>
+                    </div>
+                    <div class="card-item-12" data-type="focus" data-id="sist-4" data-aziende="id-1,id-2,id-4">
+                        <div class="item-title-12">filiera allopoietica</div>
+                        <div class="item-subtitle-12">o r m</div>
+                    </div>
+                    <div class="card-item-12" data-type="focus" data-id="sist-5" data-aziende="id-2">
+                        <div class="item-title-12">filiera autopoietica</div>
+                        <div class="item-subtitle-12">r</div>
+                    </div>
+                    <div class="card-item-12" data-type="focus" data-id="sist-6" data-aziende="id-3">
+                        <div class="item-title-12">filiera chiusa</div>
+                        <div class="item-subtitle-12">b</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="detailModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="modalBody"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
